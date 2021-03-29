@@ -12,6 +12,7 @@ find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
 add_executable(linal_spaceship
     src/App.cpp
-   "include/App.hpp")
+    src/math/Vector.cpp
+    src/math/Transform.cpp)
 
 target_link_libraries(linal_spaceship sfml-graphics)

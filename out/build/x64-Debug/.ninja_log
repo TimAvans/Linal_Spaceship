@@ -1,0 +1,10 @@
+# ninja log v5
+1	528	6387263765825863	linal/CMakeFiles/linal_spaceship.dir/src/App.cpp.obj	befebf00cc89b2ff
+528	1093	6387263770154294	out/linal_spaceship.exe	9b1ac13ce6c928d8
+3	323	6387262930471273	linal/CMakeFiles/linal_spaceship.dir/src/math/Vector.cpp.obj	4b4b5321134a4f0a
+1	8	0	clean	3c4015dbeb3e9b3
+0	787	6387284468067636	linal/CMakeFiles/linal_spaceship.dir/src/App.cpp.obj	befebf00cc89b2ff
+1	363	6387312809892631	linal/CMakeFiles/linal_spaceship.dir/src/math/Transform.cpp.obj	52e193eede08c164
+363	781	6387312812849031	out/linal_spaceship.exe	3a5ec10e45a56bfb
+0	567	6387314122539881	linal/CMakeFiles/linal_spaceship.dir/src/App.cpp.obj	befebf00cc89b2ff
+567	1088	6387314126605041	out/linal_spaceship.exe	3a5ec10e45a56bfb

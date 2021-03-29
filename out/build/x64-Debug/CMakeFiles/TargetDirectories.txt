@@ -1,0 +1,5 @@
+D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/linal/CMakeFiles/linal_spaceship.dir
+D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/linal/CMakeFiles/edit_cache.dir
+D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/linal/CMakeFiles/rebuild_cache.dir
