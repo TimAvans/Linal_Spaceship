@@ -19,7 +19,6 @@ public:
 	//void rotate_z(Matrix m1, int degrees);
 	//void translate();
 	//void scale();
-	Vector to_vector();
 private:
 
 };

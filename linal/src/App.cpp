@@ -19,26 +19,6 @@ App::App()
 void App::run() {
     while (window_.isOpen())
     {
-        Transform tr{};
-        Matrix matrix{};
-        
-        sf::Vertex line[] = {
-            // x->y
-            sf::Vertex(sf::Vector2f(x.get_x(), x.get_y())),
-            sf::Vertex(sf::Vector2f(y.get_x(), y.get_y())),
-
-            // y->a
-            sf::Vertex(sf::Vector2f(y.get_x(), y.get_y())),
-            sf::Vertex(sf::Vector2f(a.get_x(), a.get_y())),            
-            
-            // a->b
-            sf::Vertex(sf::Vector2f(a.get_x(), a.get_y())),
-            sf::Vertex(sf::Vector2f(b.get_x(), b.get_y())),            
-            
-            // b->a
-            sf::Vertex(sf::Vector2f(b.get_x(), b.get_y())),
-            sf::Vertex(sf::Vector2f(x.get_x(), x.get_y())),
-        };
         sf::Event event;
         while (window_.pollEvent(event))
         {
@@ -49,7 +29,34 @@ void App::run() {
                 std::cout << "broeder wat" << std::endl;
             }
         }
-        window_.draw(line, 8, sf::Lines);
+        std::vector<Vector3> points = {
+            { 10, 10, 1 },
+            { 10, 110, 1 },
+            { 110, 110, 1 },
+            { 110, 10, 1 },
+
+        };        
+        
+        std::vector<Vector3> points2 = {
+            { 200, 200, 1 },
+            { 200, 300, 1 },
+            { 300, 300, 1 },
+            { 300, 200, 1 }
+        };        
+        
+        std::vector<std::pair<int, int>> lines = {
+            {0, 1},
+            {1, 2},
+            {2, 3},
+            {3, 0},
+        };
+
+
+
+        DrawableObject obj{points, lines};
+        DrawableObject obj2{points2, lines};
+        render.draw({obj, obj2}, &window_);
+
         window_.display();
     }
 }

@@ -58,9 +58,6 @@ void Transform::rotate_x(Matrix m1, int degrees, bool pos) {
 	pos ? m1 = multiply(m1, mxp) : m1 = multiply(m1, mxn);
 }
 
-Vector Transform::to_vector() {
-
-}
 
 //
 //void Transform::rotate_y(Matrix m1, int degrees) {

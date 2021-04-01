@@ -1,5 +1,6 @@
 #pragma once 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "Renderer.hpp"
 
 class App {
 public: 
@@ -9,4 +10,5 @@ public:
 
 private:
 	sf::RenderWindow window_;
+	Renderer render{};
 };

@@ -1,17 +1,14 @@
 #pragma once 
+#include <vector>
 
 class Vector {
 public:
-	Vector(float x, float y, float z);
-
-	//Functions
-	float get_x();
-	float get_y();
-	float get_z();
+	Vector(int size);
+	Vector(std::initializer_list<float> values);
 
 private:
-	float x_;
-	float y_;
-	float z_;
+
+protected:
+	std::vector<float> values;
 
 };

@@ -1,19 +1,12 @@
 #include "../../include/Vector.hpp"
 
-Vector::Vector(float x, float y, float z) {
-	x_ = x;
-	y_ = y;
-	z_ = z;
+Vector::Vector(int size) {
+	for (size_t i = 0; i < size; ++i)
+	{
+		values.push_back(0.0);
+	}
 }
 
-float Vector::get_x() {
-	return x_;
-}
-
-float Vector::get_y() {
-	return y_;
-}
-
-float Vector::get_z() {
-	return z_;
+Vector::Vector(std::initializer_list<float> values) {
+	this->values = values;
 }
