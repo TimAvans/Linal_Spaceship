@@ -11,4 +11,5 @@ public:
 private:
 	sf::RenderWindow window_;
 	Renderer render{};
+	DrawableObject obj;
 };

@@ -12,5 +12,7 @@ public:
 	std::vector<Vector3> points;
 	//Indices from the points vector
 	std::vector<std::pair<int, int>> lines;
+
+	void rotate_object();
 private:
 };

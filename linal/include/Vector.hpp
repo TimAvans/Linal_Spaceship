@@ -6,9 +6,6 @@ public:
 	Vector(int size);
 	Vector(std::initializer_list<float> values);
 
-private:
-
-protected:
 	std::vector<float> values;
 
 };

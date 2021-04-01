@@ -14,51 +14,60 @@ App::App()
 	auto& size = view.getSize();
 	view.setSize(size.x, -size.y);
 	window_.setView(view);
+
+	std::vector<Vector3> points = {
+	{ 310, 310, 10 },
+	{ 310, 410, 10 },
+	{ 410, 410, 10 },
+	{ 410, 310, 10 },
+
+	{ 310, 310, 110 },
+	{ 310, 410, 110 },
+	{ 410, 410, 110 },
+	{ 410, 310, 110 },
+	};
+
+	std::vector<std::pair<int, int>> lines = {
+		{0, 1},
+		{1, 2},
+		{2, 3},
+		{3, 0},
+		{0, 4},
+		{1, 5},
+		{2, 6},
+		{3, 7},
+		{4, 5},
+		{5, 6},
+		{6, 7},
+		{7, 4}
+	};
+
+	obj = { points, lines };
+
 }
 
 void App::run() {
-    while (window_.isOpen())
-    {
-        sf::Event event;
-        while (window_.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed) {
-                window_.close();
-            }
-            else if (event.type == sf::Event::MouseButtonPressed) {
-                std::cout << "broeder wat" << std::endl;
-            }
-        }
-        std::vector<Vector3> points = {
-            { 10, 10, 1 },
-            { 10, 110, 1 },
-            { 110, 110, 1 },
-            { 110, 10, 1 },
+	while (window_.isOpen())
+	{
+		sf::Event event;
+		while (window_.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed) {
+				window_.close();
+			}
+			else if (event.type == sf::Event::KeyPressed) {
+				switch (event.key.code) {
+				case sf::Keyboard::Left:
+					obj.rotate_object();
+					break;
+				}
+			}
+		}
+		window_.clear();
+		render.draw({ obj }, &window_);
 
-        };        
-        
-        std::vector<Vector3> points2 = {
-            { 200, 200, 1 },
-            { 200, 300, 1 },
-            { 300, 300, 1 },
-            { 300, 200, 1 }
-        };        
-        
-        std::vector<std::pair<int, int>> lines = {
-            {0, 1},
-            {1, 2},
-            {2, 3},
-            {3, 0},
-        };
-
-
-
-        DrawableObject obj{points, lines};
-        DrawableObject obj2{points2, lines};
-        render.draw({obj, obj2}, &window_);
-
-        window_.display();
-    }
+		window_.display();
+	}
 }
 
 int main() {

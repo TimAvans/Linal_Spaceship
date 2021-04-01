@@ -1,4 +1,4 @@
-#include "Vector.hpp"
+#include "Vector4.hpp"
 
 struct Matrix {
 public:
@@ -8,13 +8,13 @@ public:
 	float _41 = 0, _42 = 0, _43 = 0, _44 = 1;
 };
 
-class Transform {
+static class Transform {
 public:
 	//Matrix addition(Matrix m1, Matrix m2);
 	//Matrix subtraction(Matrix m1, Matrix m2);
-	Matrix multiply(Matrix m1, Matrix m2);
+	static Vector4 multiply(Vector4 m1, Matrix m2);
 	//Matrix inverse(Matrix m1);
-	void rotate_x(Matrix m1, int degrees, bool pos);
+	static Vector3 rotate_x(Vector4 vec, int degrees, bool pos);
 	//void rotate_y(Matrix m1, int degrees);
 	//void rotate_z(Matrix m1, int degrees);
 	//void translate();
