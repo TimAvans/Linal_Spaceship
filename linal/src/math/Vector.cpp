@@ -1,9 +1,9 @@
 #include "../../include/Vector.hpp"
 
-Vector::Vector(int size) {
-	for (size_t i = 0; i < size; ++i)
+Vector::Vector() {
+	for (int i = 0; i < 4; ++i)
 	{
-		values.push_back(0.0);
+		values.push_back(0.0f);
 	}
 }
 
