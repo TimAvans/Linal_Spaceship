@@ -109,7 +109,7 @@ Vector4 Transform::multiply(Matrix m2, Matrix m1) {
 //
 //}
 
-Vector3 Transform::rotate_x(Vector4 vec, int degrees, bool pos) {
+Vector3 Transform::rotate_x(Vector4 vec, float degrees, bool pos) {
 
 	Matrix vector;
 	vector._14 = vec.x();
@@ -135,7 +135,7 @@ Vector3 Transform::rotate_x(Vector4 vec, int degrees, bool pos) {
 	return Vector3(vec4);
 }
 
-Vector3 Transform::rotate_y(Vector4 vec, int degrees, bool pos) {
+Vector3 Transform::rotate_y(Vector4 vec, float degrees, bool pos) {
 
 	Matrix vector;
 	vector._14 = vec.x();
@@ -155,7 +155,7 @@ Vector3 Transform::rotate_y(Vector4 vec, int degrees, bool pos) {
 	return Vector3(vec4);
 }
 
-Vector3 Transform::rotate_z(Vector4 vec, int degrees, bool pos) {
+Vector3 Transform::rotate_z(Vector4 vec, float degrees, bool pos) {
 
 	Matrix vector;
 	vector._14 = vec.x();
@@ -175,71 +175,28 @@ Vector3 Transform::rotate_z(Vector4 vec, int degrees, bool pos) {
 	return Vector3(vec4);
 }
 
-Vector3 Transform::rotate(Vector4 vec, int degrees, bool pos) {
-
-	Matrix vectort;
-	vectort._14 = vec.x() * -1;
-	vectort._24 = vec.y() * -1;
-	vectort._34 = vec.z() * -1;
-	vectort._44 = vec.w();	
+Matrix Transform::rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos) {
 	
-	Matrix vector;
-	vector._14 = vec.x();
-	vector._24 = vec.y();
-	vector._34 = vec.z();
-	vector._44 = vec.w();
+	Matrix mx;
+	mx._11 = 1; mx._12 = 0; mx._13 = 0; mx._14 = 0;
+	mx._21 = 0; mx._22 = cos(radian_x); mx._23 = -sin(radian_x); mx._24 = 0;
+	mx._31 = 0; mx._32 = sin(radian_x); mx._33 = cos(radian_x); mx._34 = 0;
+	mx._41 = 0; mx._42 = 0; mx._43 = 0; mx._44 = 1;	
+	
+	Matrix my;
+	my._11 = cos(radian_y); my._12 = 0; my._13 = sin(radian_y); my._14 = 0;
+	my._21 = 0; my._22 = 1; my._23 = 0; my._24 = 0;
+	my._31 = -sin(radian_y); my._32 = 0; my._33 = cos(radian_y); my._34 = 0;
+	my._41 = 0; my._42 = 0; my._43 = 0; my._44 = 1;
+	
+	Matrix mz;
+	mz._11 = cos(radian_z); mz._12 = -sin(radian_z); mz._13 = 0; mz._14 = 0;
+	mz._21 = sin(radian_z); mz._22 = cos(radian_z); mz._23 = 0; mz._24 = 0;
+	mz._31 = 0; mz._32 = 0; mz._33 = 1; mz._34 = 0;
+	mz._41 = 0; mz._42 = 0; mz._43 = 0; mz._44 = 1;
 
-	Matrix m1;
-	m1._11 = vec.x() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
-	m1._13 = vec.z() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
-	m1._31 = (vec.z() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()))) * -1;
-	m1._33 = vec.x() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
+	auto r1 = multiply(mz, my, true);
+	auto r2 = multiply(r1, mx, true);
 
-	Matrix m2;
-	m2._11 = sqrt((vec.x() * vec.x()) + (vec.z() * vec.z())) / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-	m2._12 = vec.y() / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-	m2._21 = (vec.y() / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()))) * -1;
-	m2._22 = sqrt((vec.x() * vec.x()) + (vec.z() * vec.z())) / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-
-	Matrix m3;
-	m3._11 = 1; m3._12 = 0; m3._13 = 0; m3._14 = 0;
-	m3._21 = 0; m3._22 = cos(degrees); m3._23 = -sin(degrees); m3._24 = 0;
-	m3._31 = 0; m3._32 = sin(degrees); m3._33 = cos(degrees); m3._34 = 0;
-	m3._41 = 0; m3._42 = 0; m3._43 = 0; m3._44 = 1;
-
-	Matrix m4;
-	m2._11 = sqrt((vec.x() * vec.x()) + (vec.z() * vec.z())) / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-	m2._12 = (vec.y() / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()))) * -1;
-	m2._21 = vec.y() / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-	m2._22 = sqrt((vec.x() * vec.x()) + (vec.z() * vec.z())) / sqrt((vec.x() * vec.x()) + (vec.y() * vec.y()) + (vec.z() * vec.z()));
-
-	Matrix m5;
-	m1._11 = vec.x() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
-	m1._13 = (vec.z() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()))) * -1;
-	m1._31 = vec.z() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
-	m1._33 = vec.x() / sqrt((vec.x() * vec.x()) + (vec.z() * vec.z()));
-
-	auto r1 = multiply(vector, m5, true);
-	auto r2 = multiply(r1, m4, true);
-	auto r3 = multiply(r2, m3, true);
-	auto r4 = multiply(r3, m2, true);
-	auto r5 = multiply(r4, m1, true);
-	auto r6 = multiply(r5, vectort, true);
-	auto r7 = multiply(vec, r6);
-
-	//pos ? vec = multiply(vector, mxp) : vec = multiply(vector, mxn);
-	return Vector3(r7);
+	return r2;
 }
-
-
-//
-//void Transform::rotate_y(Matrix m1, int degrees) {
-//
-//}
-//
-//void Transform::rotate_z(Matrix m1, int degrees) {
-//
-//}
-//
-//Matrix Transform::translate() {
-//}

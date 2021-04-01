@@ -50,22 +50,32 @@ void App::run() {
 	while (window_.isOpen())
 	{
 		sf::Event event;
+		bool down = false;
 		while (window_.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
 				window_.close();
 			}
 			else if (event.type == sf::Event::KeyPressed) {
-				switch (event.key.code) {
-				case sf::Keyboard::Left:
-					obj.rotate_object();
-					break;
+				if (event.key.code == sf::Keyboard::Left)
+				{
+					down = true;
 				}
+			}			
+			else if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::Left)
+				{
+					down = false;
+				}
+			}
+
+			if (down)
+			{
+				obj.rotate_object();
 			}
 		}
 		window_.clear();
 		render.draw({ obj }, &window_);
-
 		window_.display();
 	}
 }
