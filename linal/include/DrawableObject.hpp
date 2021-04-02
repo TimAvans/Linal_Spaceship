@@ -13,7 +13,7 @@ public:
 	//Indices from the points vector
 	std::vector<std::pair<int, int>> lines;
 
-	void rotate_object();
-	void move();
+	void rotate_object(Vector3 rotation_vector);
+	void move(Vector3 movement_vector);
 private:
 };
