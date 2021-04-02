@@ -17,6 +17,7 @@ public:
 
 	static Matrix rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos);
 	static Matrix move(Vector4 vec, Vector4 move_vec);
+	static Matrix scale(Vector4 move_vec);
 	static Matrix move_to_origin(Vector4 vec, Vector4 to_origin);
 
 private:
