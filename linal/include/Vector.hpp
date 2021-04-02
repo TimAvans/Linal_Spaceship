@@ -3,7 +3,7 @@
 
 class Vector {
 public:
-	Vector(int size);
+	Vector();
 	Vector(std::initializer_list<float> values);
 
 	std::vector<float> values;

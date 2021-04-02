@@ -5,7 +5,8 @@
 void DrawableObject::rotate_object() {
 	for(int i = 0; i < points.size(); ++i)
 	{
-		points[i] = Transform::rotate_x(Vector4(points[i]), 360, true);
+		Matrix rotationmatrix = Transform::rotate(Vector4(points[i]), 0.01, 0.01, 0.01, true);
+		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, rotationmatrix) };
 
 		std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() <<std::endl;
 	}
