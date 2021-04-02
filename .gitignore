@@ -1,3 +1,6 @@
 
 .vs/Linal_Spaceship/v16/Browse.VC.opendb
 *.db
+*.db
+*.db-shm
+*.ipch
