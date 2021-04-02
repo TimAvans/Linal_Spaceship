@@ -15,10 +15,11 @@ public:
 	static Matrix multiply(Matrix m1, Matrix m2);
 	static Vector4 multiply(Vector4 m2, Matrix m1);
 
-	static Matrix rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos);
+	static Matrix rotate(float radian_x, float radian_y, float radian_z, bool pos);
 	static Matrix move(Vector4 vec, Vector4 move_vec);
 	static Matrix scale(Vector4 move_vec);
 	static Matrix move_to_origin(Vector4 vec, Vector4 to_origin);
+	static void normalize(Vector3& vec);
 
 private:
 

@@ -16,15 +16,27 @@ App::App()
 	window_.setView(view);
 
 	std::vector<Vector3> points = {
-	{ 310, 310, 10 },
+	{ 310, 260, 10 },
 	{ 310, 410, 10 },
 	{ 410, 410, 10 },
-	{ 410, 310, 10 },
+	{ 410, 260, 10 },
 
-	{ 310, 310, 110 },
+	{ 310, 260, 110 },
 	{ 310, 410, 110 },
 	{ 410, 410, 110 },
-	{ 410, 310, 110 },
+	{ 410, 260, 110 },
+
+	{360, 500, 60},
+
+	{310, 335, 60},
+	{300, 335, 60},
+	{280, 260, 60},
+	{310, 260, 60},
+
+	{410, 335, 60},
+	{420, 335, 60},
+	{440, 260, 60},
+	{410, 260, 60},
 	};
 
 	std::vector<std::pair<int, int>> lines = {
@@ -39,10 +51,29 @@ App::App()
 		{4, 5},
 		{5, 6},
 		{6, 7},
-		{7, 4}
+		{7, 4},
+		{6, 8},
+		{5, 8},
+		{1, 8},
+		{2, 8},
+
+		{9,10},
+		{10,11},
+		{11, 12},
+		{12, 9},
+
+		{13,14},
+		{14,15},
+		{15, 16},
+		{16, 13},
 	};
 
-	obj = { points, lines };
+	Vector3 heading{ 0, 1, 0};
+
+	obj = { points, lines, heading};
+
+
+	
 
 }
 
@@ -63,32 +94,32 @@ void App::run() {
 				{
 					down = true;
 				}
-			}			
+			}
 			else if (event.type == sf::Event::KeyReleased) {
 
 				if (event.key.code == sf::Keyboard::W)
 				{
-					obj.move({0, 0, 1});
-				}					
+					obj.move({ 0, 0, -1 });
+				}
 				if (event.key.code == sf::Keyboard::S)
 				{
-					obj.move({0, 0, -1});
-				}	
+					obj.move({ 0, 0, 1 });
+				}
 				if (event.key.code == sf::Keyboard::A)
 				{
-					obj.move({-1, 0, 0});
-				}				
+					obj.move({ -1, 0, 0 });
+				}
 				if (event.key.code == sf::Keyboard::D)
 				{
-					obj.move({1, 0, 0});
-				}				
+					obj.move({ 1, 0, 0 });
+				}
 				if (event.key.code == sf::Keyboard::Q)
 				{
 					obj.rotate_object({ -10, -10, -10 });
-				}				
+				}
 				if (event.key.code == sf::Keyboard::E)
 				{
-					obj.rotate_object({10, 10, 10});
+					obj.rotate_object({ 10, 10, 10 });
 				}
 			}
 		}

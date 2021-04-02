@@ -44,7 +44,7 @@ Vector4 Transform::multiply(Vector4 m2, Matrix m1) {
 	return v4;
 }
 
-Matrix Transform::rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos) {
+Matrix Transform::rotate(float radian_x, float radian_y, float radian_z, bool pos) {
 	
 	Matrix mx;
 	mx._11 = 1; mx._12 = 0; mx._13 = 0; mx._14 = 0;
@@ -84,6 +84,8 @@ Matrix Transform::move(Vector4 vec, Vector4 move_vec) {
 	movematrix._34 = move_vec.z();
 	movematrix._44 = move_vec.w();
 
+	auto dinges = multiply(current, movematrix);
+
 	return movematrix;
 }
 
@@ -92,7 +94,7 @@ Matrix Transform::scale(Vector4 move_vec) {
 	scaling._11 = move_vec.x();
 	scaling._22 = move_vec.y();
 	scaling._33 = move_vec.z();
-	scaling._44 = 1;
+	scaling._44 = move_vec.w();
 
 	return scaling;
 }
@@ -105,4 +107,11 @@ Matrix Transform::move_to_origin(Vector4 vec, Vector4 to_origin) {
 	transmov._44 = to_origin.w();
 
 	return transmov;
+}
+
+void Transform::normalize(Vector3& vec) {
+	auto length = sqrt(vec.x() * vec.x() + vec.y() * vec.y() + vec.z() * vec.z());
+	vec.values[0] = vec.x() / length;
+	vec.values[1] = vec.y() / length;
+	vec.values[2] = vec.z() / length;
 }

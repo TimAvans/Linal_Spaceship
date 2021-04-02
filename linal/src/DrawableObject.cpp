@@ -25,13 +25,16 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	}
 
 	//Rotate
+	Matrix rotationmatrix = Transform::rotate(rotation_vector.x(), rotation_vector.y(), rotation_vector.z(), true);
+
 	for(int i = 0; i < points.size(); ++i)
 	{
-		Matrix rotationmatrix = Transform::rotate(Vector4(points[i]), rotation_vector.x(), rotation_vector.y(), rotation_vector.z(), true);
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, rotationmatrix) };
 
 		std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() <<std::endl;
 	}
+	heading = Vector3{ Transform::multiply(Vector4{heading}, rotationmatrix) };
+	Transform::normalize(heading);
 
 	for (int i = 0; i < to_origin.values.size(); ++i)
 	{
@@ -50,16 +53,7 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 
 void DrawableObject::move(Vector3 movement_vector) {
 
-	Vector4 scaling_vector{ (movement_vector.x() / 10) + 1, (movement_vector.y() / 10) + 1, (movement_vector.z() / 10) + 1, 1 };
-
-	////Movement
-	//for (int i = 0; i < points.size(); ++i)
-	//{
-	//	Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4{ movement_vector.x(), movement_vector.y(), movement_vector.z(), 1});
-	//	points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
-
-	//	std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() << std::endl;
-	//}
+	Vector4 scaling_vector{ (movement_vector.z() / 10) + 1, (movement_vector.z() / 10) + 1, (movement_vector.z() / 10) + 1, 1 };
 
 	//Move to origin
 	Vector3 to_origin{ 0, 0, 0 };
@@ -80,12 +74,14 @@ void DrawableObject::move(Vector3 movement_vector) {
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
 	}
 
-	//Scaling
-	for (int i = 0; i < points.size(); ++i)
-	{
-		Matrix scalingmatrix = Transform::scale(scaling_vector);
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, scalingmatrix) };
+	if (movement_vector.z() != 0) {
+		//Scaling
+		for (int i = 0; i < points.size(); ++i)
+		{
+			Matrix scalingmatrix = Transform::scale(scaling_vector);
+			points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, scalingmatrix) };
 
+		}
 	}
 
 	for (int i = 0; i < to_origin.values.size(); ++i)
@@ -98,7 +94,17 @@ void DrawableObject::move(Vector3 movement_vector) {
 	{
 		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), to_origin);
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() << std::endl;
 	}
 
-	std::cout << "---------";
+	//Movement
+	for (int i = 0; i < points.size(); ++i)
+	{
+		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4{ movement_vector.x(), movement_vector.y(), movement_vector.z(), 1 });
+		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+
+		std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() << std::endl;
+	}
+
+	std::cout << "---------" <<std::endl;
 }
