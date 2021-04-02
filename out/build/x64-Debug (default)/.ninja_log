@@ -83,3 +83,10 @@
 10	564	638972668	linal/CMakeFiles/linal_spaceship.dir/src/DrawableObject.cpp.obj	c70b56b0caede3c2
 1	759	638972668	linal/CMakeFiles/linal_spaceship.dir/src/App.cpp.obj	10b8fdb93b95bb52
 759	1347	638972668	out/linal_spaceship.exe	c305bcd8de19619b
+13	696	639001745	linal/CMakeFiles/linal_spaceship.dir/src/math/Vector4.cpp.obj	df738f37d5adbf5d
+5	711	639001745	linal/CMakeFiles/linal_spaceship.dir/src/math/Vector.cpp.obj	5336d296420d7157
+11	847	639001745	linal/CMakeFiles/linal_spaceship.dir/src/math/Transform.cpp.obj	515df21d3a0a32b
+15	873	639001745	linal/CMakeFiles/linal_spaceship.dir/src/DrawableObject.cpp.obj	c70b56b0caede3c2
+8	1078	639001746	linal/CMakeFiles/linal_spaceship.dir/src/Renderer.cpp.obj	a355cfe2b26d1f5e
+2	1083	639001746	linal/CMakeFiles/linal_spaceship.dir/src/App.cpp.obj	10b8fdb93b95bb52
+1083	1721	639001746	out/linal_spaceship.exe	c305bcd8de19619b
