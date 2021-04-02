@@ -92,7 +92,7 @@ Matrix Transform::scale(Vector4 move_vec) {
 	scaling._11 = move_vec.x();
 	scaling._22 = move_vec.y();
 	scaling._33 = move_vec.z();
-	scaling._44 = move_vec.w();
+	scaling._44 = 1;
 
 	return scaling;
 }

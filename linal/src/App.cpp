@@ -50,7 +50,9 @@ void App::run() {
 	while (window_.isOpen())
 	{
 		sf::Event event;
+
 		bool down = false;
+
 		while (window_.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
@@ -63,20 +65,31 @@ void App::run() {
 				}
 			}			
 			else if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == sf::Keyboard::Left)
-				{
-					down = false;
-				}				
-				
-				if (event.key.code == sf::Keyboard::Up)
-				{
-					obj.move();
-				}
-			}
 
-			if (down)
-			{
-				obj.rotate_object();
+				if (event.key.code == sf::Keyboard::W)
+				{
+					obj.move({0, 0, 1});
+				}					
+				if (event.key.code == sf::Keyboard::S)
+				{
+					obj.move({0, 0, -1});
+				}	
+				if (event.key.code == sf::Keyboard::A)
+				{
+					obj.move({-1, 0, 0});
+				}				
+				if (event.key.code == sf::Keyboard::D)
+				{
+					obj.move({1, 0, 0});
+				}				
+				if (event.key.code == sf::Keyboard::Q)
+				{
+					obj.rotate_object({ -10, -10, -10 });
+				}				
+				if (event.key.code == sf::Keyboard::E)
+				{
+					obj.rotate_object({10, 10, 10});
+				}
 			}
 		}
 		window_.clear();

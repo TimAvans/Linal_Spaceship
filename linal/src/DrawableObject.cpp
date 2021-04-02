@@ -2,7 +2,7 @@
 #include "../include/Transform.hpp"
 #include <iostream>
 
-void DrawableObject::rotate_object() {
+void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Calculate the middle of our object and create vector to the origin
 	Vector3 to_origin{ 0, 0, 0 };
 	for (int i = 0; i < points.size(); ++i)
@@ -27,7 +27,7 @@ void DrawableObject::rotate_object() {
 	//Rotate
 	for(int i = 0; i < points.size(); ++i)
 	{
-		Matrix rotationmatrix = Transform::rotate(Vector4(points[i]), 0.1, 0.1, 0.1, true);
+		Matrix rotationmatrix = Transform::rotate(Vector4(points[i]), rotation_vector.x(), rotation_vector.y(), rotation_vector.z(), true);
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, rotationmatrix) };
 
 		std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() <<std::endl;
@@ -48,7 +48,18 @@ void DrawableObject::rotate_object() {
 	std::cout << "---------";
 }
 
-void DrawableObject::move() {
+void DrawableObject::move(Vector3 movement_vector) {
+
+	Vector4 scaling_vector{ (movement_vector.x() / 10) + 1, (movement_vector.y() / 10) + 1, (movement_vector.z() / 10) + 1, 1 };
+
+	////Movement
+	//for (int i = 0; i < points.size(); ++i)
+	//{
+	//	Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4{ movement_vector.x(), movement_vector.y(), movement_vector.z(), 1});
+	//	points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+
+	//	std::cout << points[i].x() << ", " << points[i].y() << ", " << points[i].z() << std::endl;
+	//}
 
 	//Move to origin
 	Vector3 to_origin{ 0, 0, 0 };
@@ -72,7 +83,7 @@ void DrawableObject::move() {
 	//Scaling
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix scalingmatrix = Transform::scale(Vector4{1, 1, 0.1, 1});
+		Matrix scalingmatrix = Transform::scale(scaling_vector);
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, scalingmatrix) };
 
 	}
@@ -81,7 +92,7 @@ void DrawableObject::move() {
 	{
 		to_origin.values[i] *= -1;
 	}
-	 
+
 	//Move back
 	for (int i = 0; i < points.size(); ++i)
 	{
@@ -89,11 +100,5 @@ void DrawableObject::move() {
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
 	}
 
-	//Movement
-	for (int i = 0; i < points.size(); ++i)
-	{
-		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4{1, 1, 1, 1});
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
-	}
 	std::cout << "---------";
 }
