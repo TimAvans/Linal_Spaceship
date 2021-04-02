@@ -70,36 +70,32 @@ Matrix Transform::rotate(Vector4 vec, float radian_x, float radian_y, float radi
 	return r2;
 }
 
+
+//SCALING!!!!!!!!!!!!!!!!!!!!
 Matrix Transform::move(Vector4 vec, Vector4 move_vec) {
-	Matrix transmov;
-	transmov._14 = vec.x();
-	transmov._24 = vec.y();
-	transmov._34 = vec.z();
-	transmov._44 = vec.w();
+	Matrix current;
+	current._14 = vec.x();
+	current._24 = vec.y();
+	current._34 = vec.z();
+	current._44 = vec.w();
 
 	Matrix scaling;
-	scaling._11 = dist_x;
-	scaling._22 = dist_y;
-	scaling._33 = dist_z;
+	scaling._11 = move_vec.x();
+	scaling._22 = move_vec.y();
+	scaling._33 = move_vec.z();
 	scaling._44 = 1;
 
-	auto scaled = multiply(transmov, scaling);
+	//auto scaled = multiply(transmov, scaling);
 
-	return scaled;
+	return multiply(current, scaling);
 }
 
 Matrix Transform::move_to_origin(Vector4 vec, Vector4 to_origin) {
 	Matrix transmov;
-	transmov._14 = vec.x();
-	transmov._24 = vec.y();
-	transmov._34 = vec.z();
-	transmov._44 = vec.w();
-
-	Matrix movtrans;
 	transmov._14 = to_origin.x();
 	transmov._24 = to_origin.y();
 	transmov._34 = to_origin.z();
 	transmov._44 = to_origin.w();
 
-	return multiply(movtrans, transmov);
+	return transmov;
 }

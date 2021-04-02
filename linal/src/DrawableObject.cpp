@@ -49,6 +49,12 @@ void DrawableObject::rotate_object() {
 }
 
 void DrawableObject::move() {
+
+	//Move to origin
+	//Scaling
+	//Move back
+	//Movement
+
 	for (int i = 0; i < points.size(); ++i)
 	{
 		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4{0.1, 0.1, 0.1, 1});
