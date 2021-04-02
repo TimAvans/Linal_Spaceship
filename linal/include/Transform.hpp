@@ -16,7 +16,8 @@ public:
 	static Vector4 multiply(Vector4 m2, Matrix m1);
 
 	static Matrix rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos);
-	static Matrix move(Vector4 vec, float dist_x, float dist_y, float dist_z);
+	static Matrix move(Vector4 vec, Vector4 move_vec);
+	static Matrix move_to_origin(Vector4 vec, Vector4 to_origin);
 
 private:
 
