@@ -11,18 +11,15 @@ public:
 
 static class Transform {
 public:
-	//Matrix addition(Matrix m1, Matrix m2);
-	//Matrix subtraction(Matrix m1, Matrix m2);
-	static Vector4 multiply(Matrix m1, Matrix m2);
-	static Matrix multiply(Matrix m1, Matrix m2, bool m);
+
+	static Matrix multiply(Matrix m1, Matrix m2);
 	static Vector4 multiply(Vector4 m2, Matrix m1);
-	//Matrix inverse(Matrix m1);
-	static Vector3 rotate_x(Vector4 vec, float degrees, bool pos);
-	static Vector3 rotate_y(Vector4 vec, float degrees, bool pos);
-	static Vector3 rotate_z(Vector4 vec, float degrees, bool pos);
+
 	static Matrix rotate(Vector4 vec, float radian_x, float radian_y, float radian_z, bool pos);
-	//void translate();
-	//void scale();
+	static Matrix move(Vector4 vec, Vector4 move_vec);
+	static Matrix scale(Vector4 move_vec);
+	static Matrix move_to_origin(Vector4 vec, Vector4 to_origin);
+
 private:
 
 };
