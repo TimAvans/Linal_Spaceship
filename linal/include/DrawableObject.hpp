@@ -14,5 +14,6 @@ public:
 	std::vector<std::pair<int, int>> lines;
 
 	void rotate_object();
+	void move();
 private:
 };

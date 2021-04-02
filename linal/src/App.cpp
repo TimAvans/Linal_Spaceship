@@ -66,6 +66,11 @@ void App::run() {
 				if (event.key.code == sf::Keyboard::Left)
 				{
 					down = false;
+				}				
+				
+				if (event.key.code == sf::Keyboard::Up)
+				{
+					obj.move();
 				}
 			}
 
