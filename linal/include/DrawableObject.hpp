@@ -16,6 +16,6 @@ public:
 	Vector3 heading;
 
 	void rotate_object(Vector3 rotation_vector);
-	void move(Vector3 movement_vector);
+	void move(bool isPosMovement);
 private:
 };

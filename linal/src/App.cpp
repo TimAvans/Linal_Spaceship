@@ -99,27 +99,35 @@ void App::run() {
 
 				if (event.key.code == sf::Keyboard::W)
 				{
-					obj.move({ 0, 0, -1 });
+					obj.rotate_object({ -1, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::S)
 				{
-					obj.move({ 0, 0, 1 });
+					obj.rotate_object({ 1, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::A)
 				{
-					obj.move({ -1, 0, 0 });
+					obj.rotate_object({ 0, -1, 0 });
+
 				}
 				if (event.key.code == sf::Keyboard::D)
 				{
-					obj.move({ 1, 0, 0 });
+					obj.rotate_object({ 0, 1, 0 });
+
 				}
 				if (event.key.code == sf::Keyboard::Q)
 				{
-					obj.rotate_object({ -10, -10, -10 });
+					obj.rotate_object({ 0, 0, -1 });
 				}
 				if (event.key.code == sf::Keyboard::E)
 				{
-					obj.rotate_object({ 10, 10, 10 });
+					obj.rotate_object({ 0, 0, 1 });
+				}
+				if (event.key.code == sf::Keyboard::LShift) {
+					obj.move(true);
+				}
+				if (event.key.code == sf::Keyboard::LControl) {
+					obj.move(false);
 				}
 			}
 		}

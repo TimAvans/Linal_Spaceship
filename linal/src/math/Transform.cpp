@@ -32,16 +32,26 @@ Matrix Transform::multiply(Matrix m2, Matrix m1) {
 	return matrix;
 }
 
-Vector4 Transform::multiply(Vector4 m2, Matrix m1) {
+Vector4 Transform::multiply(Vector4 v1, Matrix m1) {
 	Vector4 v4{4};
 
 	//first row
-	v4.values[0] = (m1._11 * m2.x()) + (m1._12 * m2.y()) + (m1._13 * m2.z()) + (m1._14 * m2.w());
-	v4.values[1] = (m1._21 * m2.x()) + (m1._22 * m2.y()) + (m1._23 * m2.z()) + (m1._24 * m2.w());
-	v4.values[2] = (m1._31 * m2.x()) + (m1._32 * m2.y()) + (m1._33 * m2.z()) + (m1._34 * m2.w());
-	v4.values[3] = (m1._41 * m2.x()) + (m1._42 * m2.y()) + (m1._43 * m2.z()) + (m1._44 * m2.w());
+	v4.values[0] = (m1._11 * v1.x()) + (m1._12 * v1.y()) + (m1._13 * v1.z()) + (m1._14 * v1.w());
+	v4.values[1] = (m1._21 * v1.x()) + (m1._22 * v1.y()) + (m1._23 * v1.z()) + (m1._24 * v1.w());
+	v4.values[2] = (m1._31 * v1.x()) + (m1._32 * v1.y()) + (m1._33 * v1.z()) + (m1._34 * v1.w());
+	v4.values[3] = (m1._41 * v1.x()) + (m1._42 * v1.y()) + (m1._43 * v1.z()) + (m1._44 * v1.w());
 
 	return v4;
+}
+
+Vector Transform::multiply(Vector v1, float i) {
+	Vector v{};
+
+	for (int c = 0; c < v1.values.size(); ++c) {
+		v.values[c] = v1.values[c] * i;
+	}
+
+	return v;
 }
 
 Matrix Transform::rotate(float radian_x, float radian_y, float radian_z, bool pos) {
