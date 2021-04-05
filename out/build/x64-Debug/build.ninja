@@ -125,6 +125,24 @@ build linal\CMakeFiles\linal_spaceship.dir\src\DrawableObject.cpp.obj: CXX_COMPI
   TARGET_COMPILE_PDB = linal\CMakeFiles\linal_spaceship.dir\
   TARGET_PDB = out\linal_spaceship.pdb
 
+build linal\CMakeFiles\linal_spaceship.dir\src\Camera.cpp.obj: CXX_COMPILER__linal_spaceship_Debug ..\..\..\linal\src\Camera.cpp || cmake_object_order_depends_target_linal_spaceship
+  DEFINES = -DSFML_STATIC
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -I..\..\..\lib\windows\SFML-2.5.1\include
+  OBJECT_DIR = linal\CMakeFiles\linal_spaceship.dir
+  OBJECT_FILE_DIR = linal\CMakeFiles\linal_spaceship.dir\src
+  TARGET_COMPILE_PDB = linal\CMakeFiles\linal_spaceship.dir\
+  TARGET_PDB = out\linal_spaceship.pdb
+
+build linal\CMakeFiles\linal_spaceship.dir\src\GameObject.cpp.obj: CXX_COMPILER__linal_spaceship_Debug ..\..\..\linal\src\GameObject.cpp || cmake_object_order_depends_target_linal_spaceship
+  DEFINES = -DSFML_STATIC
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -I..\..\..\lib\windows\SFML-2.5.1\include
+  OBJECT_DIR = linal\CMakeFiles\linal_spaceship.dir
+  OBJECT_FILE_DIR = linal\CMakeFiles\linal_spaceship.dir\src
+  TARGET_COMPILE_PDB = linal\CMakeFiles\linal_spaceship.dir\
+  TARGET_PDB = out\linal_spaceship.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target linal_spaceship
@@ -133,7 +151,7 @@ build linal\CMakeFiles\linal_spaceship.dir\src\DrawableObject.cpp.obj: CXX_COMPI
 #############################################
 # Link the executable out\linal_spaceship.exe
 
-build out\linal_spaceship.exe: CXX_EXECUTABLE_LINKER__linal_spaceship_Debug linal\CMakeFiles\linal_spaceship.dir\src\App.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Vector.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Transform.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Vector4.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\Renderer.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\DrawableObject.cpp.obj | ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-graphics-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-window-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-system-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\freetype.lib
+build out\linal_spaceship.exe: CXX_EXECUTABLE_LINKER__linal_spaceship_Debug linal\CMakeFiles\linal_spaceship.dir\src\App.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Vector.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Transform.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\math\Vector4.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\Renderer.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\DrawableObject.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\Camera.cpp.obj linal\CMakeFiles\linal_spaceship.dir\src\GameObject.cpp.obj | ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-graphics-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-window-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-system-s-d.lib ..\..\..\lib\windows\SFML-2.5.1\lib\freetype.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-graphics-s-d.lib  ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-window-s-d.lib  ..\..\..\lib\windows\SFML-2.5.1\lib\sfml-system-s-d.lib  winmm.lib  gdi32.lib  OpenGL32.lib  ..\..\..\lib\windows\SFML-2.5.1\lib\freetype.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

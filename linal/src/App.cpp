@@ -4,8 +4,8 @@
 #include <iostream>
 #include "../include/Transform.hpp"
 
-const int screenWidth = 800;
-const int screenHeight = 600;
+const int screenWidth = 1920;
+const int screenHeight = 1080;
 
 App::App()
 	: window_(sf::RenderWindow{ sf::VideoMode{screenWidth, screenHeight}, "Spaceship", sf::Style::Close }) {
@@ -16,27 +16,27 @@ App::App()
 	window_.setView(view);
 
 	std::vector<Vector3> points = {
-	{ 310, 260, 10 },
-	{ 310, 410, 10 },
-	{ 410, 410, 10 },
-	{ 410, 260, 10 },
+	{ 0, 0, 20 },
+	{ 0, 50, 20 },
+	{ 50, 50, 20 },
+	{ 50, 0, 20 },
 
-	{ 310, 260, 110 },
-	{ 310, 410, 110 },
-	{ 410, 410, 110 },
-	{ 410, 260, 110 },
+	{ 0, 0, 30 },
+	{ 0, 50, 30 },
+	{ 50, 50, 30 },
+	{ 50, 0, 30 },
 
-	{360, 500, 60},
+	{25, 75, 25},
 
-	{310, 335, 60},
-	{300, 335, 60},
-	{280, 260, 60},
-	{310, 260, 60},
+	//{310, 335, 60},
+	//{300, 335, 60},
+	//{280, 260, 60},
+	//{310, 260, 60},
 
-	{410, 335, 60},
-	{420, 335, 60},
-	{440, 260, 60},
-	{410, 260, 60},
+	//{410, 335, 60},
+	//{420, 335, 60},
+	//{440, 260, 60},
+	//{410, 260, 60},
 	};
 
 	std::vector<std::pair<int, int>> lines = {
@@ -57,27 +57,25 @@ App::App()
 		{1, 8},
 		{2, 8},
 
-		{9,10},
-		{10,11},
-		{11, 12},
-		{12, 9},
+		//{9, 10},
+		//{10, 11},
+		//{11, 12},
+		//{12, 9},
 
-		{13,14},
-		{14,15},
-		{15, 16},
-		{16, 13},
+		//{13, 14},
+		//{14, 15},
+		//{15, 16},
+		//{16, 13},
 	};
 
 	Vector3 heading{ 0, 1, 0};
 
-	obj = { points, lines, heading};
-
-
-	
-
+	objects.push_back({points, lines, heading});
 }
 
 void App::run() {
+	DrawableObject obj = objects[0];
+
 	while (window_.isOpen())
 	{
 		sf::Event event;
@@ -128,7 +126,7 @@ void App::run() {
 				}
 				if (event.key.code == sf::Keyboard::LControl) {
 					obj.move(false);
-				}
+				}				
 			}
 		}
 		window_.clear();
@@ -139,6 +137,5 @@ void App::run() {
 
 int main() {
 	App app;
-	app.run();
 	app.run();
 }

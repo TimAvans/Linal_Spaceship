@@ -1,15 +1,17 @@
 #pragma once
 #include <vector>
+#include <iostream>
 #include "Vector3.hpp"
+#include "GameObject.hpp"
 
-class DrawableObject {
+class DrawableObject : public GameObject {
 public:
-	DrawableObject(std::vector<Vector3> points, std::vector<std::pair<int, int>> lines, Vector3 heading) {
-		this->lines = lines; this->points = points; this->heading = heading;
+	DrawableObject(std::vector<Vector3> points, std::vector<std::pair<int, int>> lines, Vector3 heading) : GameObject(points) {
+		this->lines = lines; 
+		this->heading = heading;
 	};	
 	DrawableObject() {};
-	//All points from the drawableobject
-	std::vector<Vector3> points;
+
 	//Indices from the points vector
 	std::vector<std::pair<int, int>> lines;
 

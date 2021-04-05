@@ -11,5 +11,5 @@ public:
 private:
 	sf::RenderWindow window_;
 	Renderer render{};
-	DrawableObject obj;
+	std::vector<DrawableObject> objects{};
 };

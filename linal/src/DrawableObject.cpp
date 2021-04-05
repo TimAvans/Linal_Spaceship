@@ -1,6 +1,5 @@
 #include "../include/DrawableObject.hpp"
 #include "../include/Transform.hpp"
-#include <iostream>
 
 void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Calculate the middle of our object and create vector to the origin
@@ -33,7 +32,7 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	}
 
 	heading = Vector3{ Transform::multiply(Vector4{heading}, rotationmatrix) };
-	Transform::normalize(heading);
+	Transform::normalize(Vector4{ heading });
 
 	for (int i = 0; i < to_origin.values.size(); ++i)
 	{
@@ -46,13 +45,11 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), to_origin);
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
 	}
-
-	std::cout << "---------";
 }
 
 void DrawableObject::move(bool isPosMovement) {
 
-	Vector4 rel_heading{4};
+	Vector4 rel_heading{ 4 };
 	if (!isPosMovement) {
 		rel_heading = Transform::multiply(heading, -1);
 	}
@@ -61,8 +58,6 @@ void DrawableObject::move(bool isPosMovement) {
 	}
 
 	Vector4 scaling_vector{ (rel_heading.z() / 10) + 1, (rel_heading.z() / 10) + 1, (rel_heading.z() / 10) + 1, 1 };
-
-	std::cout << scaling_vector.z() << std::endl;
 
 	//Move to origin
 	Vector3 to_origin{ 0, 0, 0 };
@@ -111,7 +106,7 @@ void DrawableObject::move(bool isPosMovement) {
 		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4(rel_heading));;
 
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
-
 	}
 
 }
+

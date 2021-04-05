@@ -7,6 +7,11 @@ sf::RenderWindow* Renderer::get_window() {
 void Renderer::draw(std::vector<DrawableObject> objects, sf::RenderWindow* window) {
     for each (auto object in objects)
     {
+        for (size_t i = 0; i < object.points.size(); ++i)
+        {
+            object.points[i] = Vector3{ Transform::multiply(object.points[i], c_.projection_matrix) };
+        }
+
         for each (auto line in object.lines)
         {
             sf::Vertex drawable_line[] = {
