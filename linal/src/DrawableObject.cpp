@@ -18,7 +18,7 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Move to origin
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.move_to_origin(Vector4(points[i]), Vector4{ to_origin });
+		Matrix move_matrix = math_.translation_matrix(Vector4{ to_origin });
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
@@ -41,7 +41,7 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Move back to original points
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.move_to_origin(Vector4(points[i]), to_origin);
+		Matrix move_matrix = math_.translation_matrix(to_origin);
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 }
@@ -73,7 +73,7 @@ void DrawableObject::move(bool isPosMovement) {
 	}
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.move_to_origin(Vector4(points[i]), Vector4{ to_origin });
+		Matrix move_matrix = math_.translation_matrix(Vector4{ to_origin });
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
@@ -94,14 +94,14 @@ void DrawableObject::move(bool isPosMovement) {
 	//Move back
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.move_to_origin(Vector4(points[i]), to_origin);
+		Matrix move_matrix = math_.translation_matrix(to_origin);
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 	//Movement
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.move(Vector4(points[i]), Vector4(rel_heading));
+		Matrix move_matrix = math_.translation_matrix( Vector4(rel_heading));
 
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}

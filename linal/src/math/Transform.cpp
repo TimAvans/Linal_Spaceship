@@ -1,5 +1,4 @@
 #include "../../include/Transform.hpp"
-#include <cmath>
 #include <iostream>
 	Matrix Transform::multiply(Matrix m2, Matrix m1) {
 		Matrix matrix;
@@ -98,16 +97,6 @@
 		return r2;
 	}
 
-	Matrix Transform::move(Vector4 vec, Vector4 move_vec) {
-		Matrix movematrix;
-		movematrix._14 = move_vec.x();
-		movematrix._24 = move_vec.y();
-		movematrix._34 = move_vec.z();
-		movematrix._44 = move_vec.w();
-
-		return movematrix;
-	}
-
 	Matrix Transform::scale(Vector4 move_vec) {
 		Matrix scaling;
 		scaling._11 = move_vec.x();
@@ -116,16 +105,6 @@
 		scaling._44 = move_vec.w();
 
 		return scaling;
-	}
-
-	Matrix Transform::move_to_origin(Vector4 vec, Vector4 to_origin) {
-		Matrix transmov;
-		transmov._14 = to_origin.x();
-		transmov._24 = to_origin.y();
-		transmov._34 = to_origin.z();
-		transmov._44 = to_origin.w();
-
-		return transmov;
 	}
 
 	void Transform::normalize(Vector4& vec) {
@@ -144,3 +123,11 @@
 		
 		return m1;
 	}
+
+	float in_product(Vector4 vec1, Vector4 vec2) {
+		return (vec1.x() * vec2.x()) + (vec1.y() * vec2.y()) + (vec1.z() * vec2.z());
+	};
+	
+	Vector4 out_product(Vector4 vec1, Vector4 vec2) {
+		return { (vec1.y() * vec2.z()) - (vec1.z() * vec2.y()), (vec1.z() * vec2.x()) - (vec1.x() * vec2.z()), (vec1.x() * vec2.y()) - (vec1.y() * vec2.x()), 1 };
+	};
