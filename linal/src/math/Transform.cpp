@@ -53,17 +53,16 @@
 		return v;
 	}
 
-	Vector Transform::multiply(Vector v1, Vector v2) {
-		Vector v{};
+	Vector4 Transform::multiply(Vector v1, Vector v2) {
+		Matrix m1 = translation_matrix(v1);
+		Matrix m2 = translation_matrix(v2);
 
-		for (int c = 0; c < v1.values.size(); ++c) {
-			v.values[c] = v1.values[c] * v2.values[c];
-		}
+		Matrix result = multiply(m1, m2);
 
-		return v;
+		return {result._14, result._24, result._34, result._44};
 	}
 
-	Vector Transform::subtract(Vector v1, Vector v2) {
+	Vector4 Transform::subtract(Vector v1, Vector v2) {
 		Vector v{};
 
 		for (int c = 0; c < v1.values.size(); ++c) {
@@ -98,7 +97,6 @@
 
 		return r2;
 	}
-
 
 	Matrix Transform::move(Vector4 vec, Vector4 move_vec) {
 		Matrix movematrix;
@@ -135,4 +133,14 @@
 		vec.values[0] = vec.x() / length;
 		vec.values[1] = vec.y() / length;
 		vec.values[2] = vec.z() / length;
+	}
+
+	Matrix Transform::translation_matrix(Vector4 v1) {
+		Matrix m1;
+		m1._14 = v1.x();
+		m1._24 = v1.y();
+		m1._34 = v1.z();
+		m1._44 = v1.w();
+		
+		return m1;
 	}

@@ -1,12 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\linal",
-    "\\linal\\include",
-    "\\linal\\out",
-    "\\linal\\src",
-    "\\linal\\src\\math"
+    "\\Linal_test",
+    "\\Linal_tests",
+    "\\out\\build",
+    "\\out\\out",
+    "\\out\\out\\build",
+    "\\out\\out\\build\\x64-Debug (default)"
   ],
-  "SelectedNode": "\\linal\\src\\GameObject.cpp",
+  "SelectedNode": "\\Linal_test\\test.cpp",
   "PreviewInSolutionExplorer": false
 }

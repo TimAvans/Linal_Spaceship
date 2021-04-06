@@ -84,7 +84,6 @@ void DrawableObject::move(bool isPosMovement) {
 		{
 			Matrix scalingmatrix = Transform::scale(scaling_vector);
 			points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, scalingmatrix) };
-
 		}
 	}
 
@@ -103,10 +102,9 @@ void DrawableObject::move(bool isPosMovement) {
 	//Movement
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4(rel_heading));;
+		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4(rel_heading));
 
 		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 }
-
