@@ -5,3 +5,7 @@
 *.db-shm
 *.ipch
 .vs/slnx.sqlite
+.vs/Linal_Spaceship/v16/Browse.VC.db
+.vs/Linal_Spaceship/v16/Browse.VC.db-wal
+.vs/Linal_Spaceship/v16/TestStore/0/000.testlog
+.vs/Linal_Spaceship/v16/TestStore/0/testlog.manifest
