@@ -1,16 +1,16 @@
 #include "../include/Camera.hpp"
 
 void Camera::calculate_up() {
-	up = Transform::multiply(direction, right);
+	up = math.multiply(direction, right);
 };
 
 void Camera::calculate_right() {
-	right = Transform::multiply(up, direction);
+	right = math.multiply(up, direction);
 
 };
 
 void Camera::calculate_direction() {
-	direction = Transform::subtract(points[0], lookat);
+	direction = math.subtract(points[0], lookat);
 };
 
 Matrix Camera::inverted_translation_matrix() {
@@ -53,7 +53,7 @@ Matrix Camera::translated_to_O() {
 	m1._24 = points[0].y() * -1;
 	m1._34 = points[0].z() * -1;
 
-	return Transform::multiply(inverted_translation_matrix(), m1);
+	return  math.multiply(inverted_translation_matrix(), m1);
 };
 
 void Camera::move(bool isPosMovement) {

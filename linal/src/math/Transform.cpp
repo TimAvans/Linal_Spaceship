@@ -3,7 +3,7 @@
 #include <iostream>
 	Matrix Transform::multiply(Matrix m2, Matrix m1) {
 		Matrix matrix;
-
+		
 		//first row
 		matrix._11 = (m1._11 * m2._11) + (m1._12 * m2._21) + (m1._13 * m2._31) + (m1._14 * m2._41);
 		matrix._12 = (m1._11 * m2._12) + (m1._12 * m2._22) + (m1._13 * m2._32) + (m1._14 * m2._42);

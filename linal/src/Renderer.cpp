@@ -26,7 +26,7 @@ void Renderer::draw(std::vector<DrawableObject> objects, sf::RenderWindow* windo
         
             std::cout << " x: " << object.points[i].values[0] << " y: " << object.points[i].values[1] << " z: " << object.points[i].values[2] << " w: " << object.points[i].values[3] << std::endl;*/
         
-            object.points[i] = Transform::multiply(object.points[i], persp);
+            object.points[i] = math_.multiply(object.points[i], persp);
         
         }
 

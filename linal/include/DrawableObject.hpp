@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Vector3.hpp"
 #include "GameObject.hpp"
+#include "Transform.hpp"
 
 class DrawableObject : public GameObject {
 public:
@@ -14,7 +15,7 @@ public:
 
 	//Indices from the points vector
 	std::vector<std::pair<int, int>> lines;
-
+	Transform math_;
 	Vector3 heading;
 
 	void rotate_object(Vector3 rotation_vector);

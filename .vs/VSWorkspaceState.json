@@ -1,13 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Linal_test",
-    "\\Linal_tests",
-    "\\out\\build",
-    "\\out\\out",
-    "\\out\\out\\build",
-    "\\out\\out\\build\\x64-Debug (default)"
+    "\\linal",
+    "\\linal\\include",
+    "\\linal\\src",
+    "\\linal\\src\\math"
   ],
-  "SelectedNode": "\\Linal_test\\test.cpp",
+  "SelectedNode": "\\out",
   "PreviewInSolutionExplorer": false
 }
