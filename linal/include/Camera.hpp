@@ -5,7 +5,7 @@
 
 class Camera : public GameObject{
 public:
-	Camera() : GameObject(points) {
+	Camera() : GameObject( { Vector4{ 0, 0, -10, 1 } }) {
 		projection_matrix._11 = scale_;
 		projection_matrix._22 = scale_;
 		projection_matrix._33 = -far_ / (far_ - near_);
@@ -13,7 +13,8 @@ public:
 		projection_matrix._43 = (-far_ * near_) / (far_ - near_);
 		projection_matrix._44 = 0;
 
-		direction = Transform::subtract(eye, lookat);
+		direction = Transform::subtract(points[0], lookat);
+
 		Transform::normalize(direction);
 
 		up = { 0, 1, 0, 1 };
@@ -27,8 +28,7 @@ public:
 		Transform::normalize(up);
 	};
 
-	Vector4 eye{400, 300, -10, 1};
-	Vector4 lookat{0, 0, 0, 1};
+	Vector4 lookat{0, 0, 10, 1};
 	Vector4 direction{4};
 	Vector4 up{4};
 	Vector4 right{4};
@@ -40,12 +40,15 @@ public:
 
 	Matrix projection_matrix;
 
-	Vector4 calculate_up();
-	Vector4 calculate_right();
-	Vector4 calculate_direction();
+	void calculate_up();
+	void calculate_right();
+	void calculate_direction();
 
 	Matrix inverted_translation_matrix();
+	Matrix translation_matrix();
 	Matrix translated_to_O();
-private:
 
+	void move(bool isPosMovement) override;
+private:
+	float speed = 5.0f;
 };

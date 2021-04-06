@@ -5,16 +5,15 @@
 
 class GameObject{
 public:
-	GameObject(std::vector<Vector3> points) {
+	GameObject(std::vector<Vector4> points) {
 		this->points = points;
 	};	
 	GameObject() {
 	};
 
-	std::vector<Vector3> points;
+	std::vector<Vector4> points;
 
 	virtual void move(bool isPosMovement);
 
 private:
-
 };

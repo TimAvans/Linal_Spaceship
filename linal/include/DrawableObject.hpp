@@ -6,7 +6,7 @@
 
 class DrawableObject : public GameObject {
 public:
-	DrawableObject(std::vector<Vector3> points, std::vector<std::pair<int, int>> lines, Vector3 heading) : GameObject(points) {
+	DrawableObject(std::vector<Vector4> points, std::vector<std::pair<int, int>> lines, Vector3 heading) : GameObject(points) {
 		this->lines = lines; 
 		this->heading = heading;
 	};	
@@ -18,6 +18,6 @@ public:
 	Vector3 heading;
 
 	void rotate_object(Vector3 rotation_vector);
-	void move(bool isPosMovement);
+	void move(bool isPosMovement) override;
 private:
 };
