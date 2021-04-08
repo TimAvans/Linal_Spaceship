@@ -86,14 +86,14 @@ void App::run() {
 
 
 
-		std::vector<DrawableObject> oogabooga;
-		oogabooga.push_back(ship);
+		std::vector<DrawableObject> drawables;
+		drawables.push_back(ship);
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
-			oogabooga.push_back(objects[i]);
+			drawables.push_back(objects[i]);
 		}
 
-		render.draw(oogabooga, &window_);
+		render.draw(drawables, &window_);
 		window_.display();
 	}
 }
