@@ -1,5 +1,4 @@
 #include "../include/DrawableObject.hpp"
-#include "../include/Transform.hpp"
 
 void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Calculate the middle of our object and create vector to the origin
@@ -19,20 +18,20 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Move to origin
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), Vector4{ to_origin });
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		Matrix move_matrix = math_.translation_matrix(Vector4{ to_origin });
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 	//Rotate
-	Matrix rotationmatrix = Transform::rotate(rotation_vector.x(), rotation_vector.y(), rotation_vector.z(), true);
+	Matrix rotationmatrix = math_.rotate(rotation_vector.x(), rotation_vector.y(), rotation_vector.z(), true);
 
 	for (int i = 0; i < points.size(); ++i)
 	{
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, rotationmatrix) };
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, rotationmatrix) };
 	}
 
-	heading = Vector3{ Transform::multiply(Vector4{heading}, rotationmatrix) };
-	Transform::normalize(Vector4{ heading });
+	heading = Vector3{ math_.multiply(Vector4{heading}, rotationmatrix) };
+	math_.normalize(Vector4{ heading });
 
 	for (int i = 0; i < to_origin.values.size(); ++i)
 	{
@@ -42,8 +41,8 @@ void DrawableObject::rotate_object(Vector3 rotation_vector) {
 	//Move back to original points
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), to_origin);
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		Matrix move_matrix = math_.translation_matrix(to_origin);
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 }
 
@@ -51,7 +50,7 @@ void DrawableObject::move(bool isPosMovement) {
 
 	Vector4 rel_heading{ 4 };
 	if (!isPosMovement) {
-		rel_heading = Transform::multiply(heading, -1);
+		rel_heading = math_.multiply(heading, -1);
 	}
 	else {
 		rel_heading = heading;
@@ -74,16 +73,16 @@ void DrawableObject::move(bool isPosMovement) {
 	}
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), Vector4{ to_origin });
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		Matrix move_matrix = math_.translation_matrix(Vector4{ to_origin });
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 	if (rel_heading.z() != 0) {
 		//Scaling
 		for (int i = 0; i < points.size(); ++i)
 		{
-			Matrix scalingmatrix = Transform::scale(scaling_vector);
-			points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, scalingmatrix) };
+			Matrix scalingmatrix = math_.scale(scaling_vector);
+			points[i] = Vector3{ math_.multiply(Vector4{points[i]}, scalingmatrix) };
 		}
 	}
 
@@ -95,16 +94,16 @@ void DrawableObject::move(bool isPosMovement) {
 	//Move back
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move_to_origin(Vector4(points[i]), to_origin);
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		Matrix move_matrix = math_.translation_matrix(to_origin);
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 	//Movement
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = Transform::move(Vector4(points[i]), Vector4(rel_heading));
+		Matrix move_matrix = math_.translation_matrix( Vector4(rel_heading));
 
-		points[i] = Vector3{ Transform::multiply(Vector4{points[i]}, move_matrix) };
+		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
 
 }

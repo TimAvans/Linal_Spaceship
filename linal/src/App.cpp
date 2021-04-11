@@ -4,8 +4,8 @@
 #include <iostream>
 #include "../include/Transform.hpp"
 
-const int screenWidth = 800;
-const int screenHeight = 600;
+const int screenWidth = 1920;
+const int screenHeight = 1080;
 
 App::App()
 	: window_(sf::RenderWindow{ sf::VideoMode{screenWidth, screenHeight}, "Spaceship", sf::Style::Close }) {

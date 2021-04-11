@@ -13,20 +13,23 @@ public:
 		projection_matrix._43 = (-far_ * near_) / (far_ - near_);
 		projection_matrix._44 = 0;
 
-		direction = Transform::subtract(points[0], lookat);
 
-		Transform::normalize(direction);
+		direction = math.subtract(points[0], lookat);
+
+		math.normalize(direction);
 
 		up = { 0, 1, 0, 1 };
 
-		right = Transform::multiply(up, direction);
+		right = math.multiply(up, direction);
 
-		Transform::normalize(right);
+		math.normalize(right);
 
 		calculate_up();	
 
-		Transform::normalize(up);
+		math.normalize(up);
 	};
+
+	Transform math;
 
 	Vector4 lookat{0, 0, 10, 1};
 	Vector4 direction{4};

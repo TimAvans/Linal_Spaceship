@@ -2,7 +2,6 @@
 #include "Vector4.hpp"
 #include "Vector3.hpp"
 
-
 struct Matrix {
 public:
 	float _11 = 1, _12 = 0, _13 = 0, _14 = 0;
@@ -11,20 +10,19 @@ public:
 	float _41 = 0, _42 = 0, _43 = 0, _44 = 1;
 };
 
-static class Transform {
+class Transform {
 public:
-	static Matrix multiply(Matrix m1, Matrix m2);
-	static Vector4 multiply(Vector4 v1, Matrix m1);
-	static Vector4 multiply_test(Vector4 v1, Matrix m1);
-	static Vector multiply(Vector v1, float i);
-	static Vector4 multiply(Vector v1, Vector v2);
-	static Vector4 subtract(Vector v1, Vector v2);
-	static Matrix translation_matrix(Vector4 v1);
-	static Matrix rotate(float radian_x, float radian_y, float radian_z, bool pos);
-	static Matrix move(Vector4 vec, Vector4 move_vec);
-	static Matrix scale(Vector4 move_vec);
-	static Matrix move_to_origin(Vector4 vec, Vector4 to_origin);
-	static void normalize(Vector4& vec);
+	 Matrix multiply(Matrix m1, Matrix m2);
+	 Vector4 multiply(Vector4 v1, Matrix m1);
+	 Vector multiply(Vector v1, float i);
+	 Vector4 multiply(Vector v1, Vector v2);
+	 Vector4 subtract(Vector v1, Vector v2);
+	 Matrix translation_matrix(Vector4 v1);
+	 Matrix rotate(float radian_x, float radian_y, float radian_z, bool pos);
+	 Matrix scale(Vector4 move_vec);
+	 float in_product(Vector4 vec1, Vector4 vec2);
+	 Vector4 out_product(Vector4 vec1, Vector4 vec2);
+	 void normalize(Vector4& vec);
 
 private:
 

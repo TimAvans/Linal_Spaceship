@@ -12,6 +12,6 @@ public:
 	Camera c_{};
 private:
 	sf::RenderWindow* window_;
-
+	Transform math_;
 
 };

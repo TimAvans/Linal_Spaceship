@@ -1,0 +1,5 @@
+if(EXISTS "D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/linal/Testing[1]_tests.cmake")
+  include("D:/Visual studio projecten/Linal_Spaceship/out/build/x64-Debug/linal/Testing[1]_tests.cmake")
+else()
+  add_test(Testing_NOT_BUILT Testing_NOT_BUILT)
+endif()
