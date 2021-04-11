@@ -22,6 +22,9 @@ void App::run() {
 		sf::Event event;
 
 		bool down = false;
+
+		po.pulse();
+
 		while (window_.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
@@ -37,27 +40,27 @@ void App::run() {
 
 				if (event.key.code == sf::Keyboard::W)
 				{
-					ship.rotate_object({ -1, 0, 0 });
+					ship.rotate_object({ -0.5, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::S)
 				{
-					ship.rotate_object({ 1, 0, 0 });
+					ship.rotate_object({ 0.5, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::A)
 				{
-					ship.rotate_object({ 0, -1, 0 });
+					ship.rotate_object({ 0, -0.5, 0 });
 				}
 				if (event.key.code == sf::Keyboard::D)
 				{
-					ship.rotate_object({ 0, 1, 0 });
+					ship.rotate_object({ 0, 0.5, 0 });
 				}
 				if (event.key.code == sf::Keyboard::Q)
 				{
-					ship.rotate_object({ 0, 0, -1 });
+					ship.rotate_object({ 0, 0, -0.5 });
 				}
 				if (event.key.code == sf::Keyboard::E)
 				{
-					ship.rotate_object({ 0, 0, 1 });
+					ship.rotate_object({ 0, 0, 0.5 });
 				}
 				if (event.key.code == sf::Keyboard::LShift) {
 					ship.move(true);
@@ -66,14 +69,11 @@ void App::run() {
 					ship.move(false);
 				}				
 				if (event.key.code == sf::Keyboard::Right) {
-					render.c_.move(true);
+					po.rotate_object({0.5, 0.5 ,0});
 				}					
 				if (event.key.code == sf::Keyboard::Space) {
 					objects.push_back(ship.shoot_bullet());
-				}						
-				if (event.key.code == sf::Keyboard::BackSpace) {
-					objects.pop_back();
-				}				
+				}								
 			}
 		}
 		window_.clear();
@@ -83,11 +83,9 @@ void App::run() {
 			objects[i].move(true);
 		}
 
-
-
-
 		std::vector<DrawableObject> drawables;
 		drawables.push_back(ship);
+		drawables.push_back(po);
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			drawables.push_back(objects[i]);

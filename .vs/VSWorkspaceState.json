@@ -4,8 +4,8 @@
     "\\linal",
     "\\linal\\include",
     "\\linal\\src",
-    "\\out"
+    "\\linal\\src\\math"
   ],
-  "SelectedNode": "\\linal\\src\\App.cpp",
+  "SelectedNode": "\\linal\\include\\Vector.hpp",
   "PreviewInSolutionExplorer": false
 }

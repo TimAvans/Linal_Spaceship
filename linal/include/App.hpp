@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Renderer.hpp"
 #include "Ship.hpp"
+#include "../include/PulsatingObject.hpp"
 
 class App {
 public: 
@@ -12,17 +13,17 @@ public:
 private:
 
 	std::vector<Vector4> points = {
-	{ 0, 0, 20, 1 },
-	{ 0, 50, 20, 1 },
-	{ 50, 50, 20, 1 },
-	{ 50, 0, 20, 1 },
+	{ 10, 10, 12, 1 },
+	{ 10, 15, 12, 1 },
+	{ 15, 15, 12, 1 },
+	{ 15, 10, 12, 1 },
 
-	{ 0, 0, 30, 1 },
-	{ 0, 50, 30, 1 },
-	{ 50, 50, 30, 1 },
-	{ 50, 0, 30, 1 },
+	{ 10, 10, 13, 1 },
+	{ 10, 15, 13, 1 },
+	{ 15, 15, 13, 1 },
+	{ 15, 10, 13, 1 },
 
-	{25, 75, 25, 1},
+	{12.5, 17.5, 12.5, 1},
 	};
 
 	std::vector<std::pair<int, int>> lines = {
@@ -46,6 +47,36 @@ private:
 
 	Vector3 heading{ 0, 1, 0 };
 
+	std::vector<Vector4> points2 = {
+		{ 10, 60, 10, 1 },
+		{ 10, 65, 10, 1 },
+		{ 15, 65, 10, 1 },
+		{ 15, 60, 10, 1 },
+
+		{ 10, 60, 15, 1 },
+		{ 10, 65, 15, 1 },
+		{ 15, 65, 15, 1 },
+		{ 15, 60, 15, 1 },
+	};
+
+	std::vector<std::pair<int, int>> lines2 = {
+		{0, 1},
+		{1, 2},
+		{2, 3},
+		{3, 0},
+		{0, 4},
+		{1, 5},
+		{2, 6},
+		{3, 7},
+		{4, 5},
+		{5, 6},
+		{6, 7},
+		{7, 4},
+	};
+
+	Vector3 heading2{ 0, 0, 0 };
+
+
 	sf::RenderWindow window_;
 
 	Renderer render{};
@@ -53,4 +84,8 @@ private:
 	std::vector<Bullet> objects;
 
 	Ship ship{points, lines, heading};
+
+	PulsatingObject po{ points2, lines2, heading2 };
+
+
 };
