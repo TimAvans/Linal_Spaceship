@@ -18,6 +18,8 @@ public:
 	Transform math_;
 	Vector3 heading;
 
+	std::vector<Vector4> colliding_points;
+
 	void rotate_object(Vector3 rotation_vector);
 	void move(bool isPosMovement) override;
 private:

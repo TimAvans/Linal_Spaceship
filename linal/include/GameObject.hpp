@@ -15,5 +15,7 @@ public:
 
 	virtual void move(bool isPosMovement);
 
+	bool shouldDraw = true;
+	bool shouldRemove = false;
 private:
 };

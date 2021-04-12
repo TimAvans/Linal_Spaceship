@@ -9,7 +9,7 @@ void PulsatingObject::pulse() {
 		{
 			scale_up = !scale_up;
 		}
-		std::cout << scale_up << " DOWN! " << std::endl;
+		//std::cout << scale_up << " DOWN! " << std::endl;
 	}
 	else{
 		scaling_vector = { 1.001, 1.001, 1.001, 1.001 };
@@ -18,7 +18,7 @@ void PulsatingObject::pulse() {
 		{
 			scale_up = !scale_up;
 		}
-		std::cout << scale_up << " UP! " << std::endl;
+		//std::cout << scale_up << " UP! " << std::endl;
 	}
 
 	Vector3 to_origin{ 0, 0, 0 };

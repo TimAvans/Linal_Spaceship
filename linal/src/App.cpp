@@ -14,6 +14,8 @@ App::App()
 	auto& size = view.getSize();
 	view.setSize(size.x, -size.y);
 	window_.setView(view);
+
+	po->rotate_object({ 0.5, 0.5 ,0 });
 }
 
 void App::run() {
@@ -23,7 +25,26 @@ void App::run() {
 
 		bool down = false;
 
-		po.pulse();
+ 		for (size_t i = 0; i < objects.size(); ++i)
+		{
+			if (objects[i].shouldRemove) {
+				auto& del = objects[i];
+				objects.erase(objects.begin() + i);
+
+				delete& del;
+			}
+		}
+
+		//if (po->shouldRemove) {
+		//	delete po;
+		//}
+
+		//if (po) {
+ 		//	po->pulse();
+		//}
+		//else {
+		//	std::cout << "poepie";
+		//}
 
 		while (window_.pollEvent(event))
 		{
@@ -67,12 +88,9 @@ void App::run() {
 				}
 				if (event.key.code == sf::Keyboard::LControl) {
 					ship.move(false);
-				}				
-				if (event.key.code == sf::Keyboard::Right) {
-					po.rotate_object({0.5, 0.5 ,0});
-				}					
+				}								
 				if (event.key.code == sf::Keyboard::Space) {
-					objects.push_back(ship.shoot_bullet());
+ 					objects.push_back(ship.shoot_bullet(po));
 				}								
 			}
 		}
@@ -81,11 +99,12 @@ void App::run() {
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			objects[i].move(true);
+			objects[i].CheckCollision();
 		}
 
 		std::vector<DrawableObject> drawables;
 		drawables.push_back(ship);
-		drawables.push_back(po);
+		drawables.push_back(*po);
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			drawables.push_back(objects[i]);
@@ -93,6 +112,7 @@ void App::run() {
 
 		render.draw(drawables, &window_);
 		window_.display();
+
 	}
 }
 

@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/RikVe/Documents/GitHub/Linal_Spaceship/out/build/x64-Debug (default)/linal/Testing[1]_tests.cmake")
+  include("C:/Users/RikVe/Documents/GitHub/Linal_Spaceship/out/build/x64-Debug (default)/linal/Testing[1]_tests.cmake")
+else()
+  add_test(Testing_NOT_BUILT Testing_NOT_BUILT)
+endif()

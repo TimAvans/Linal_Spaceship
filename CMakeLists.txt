@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
+project(linal_spaceship)
 
 # Ensure all build projects arrive in the same directory
 set(INSTALL_DIR ${PROJECT_BINARY_DIR}/out)

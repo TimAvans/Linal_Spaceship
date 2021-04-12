@@ -85,7 +85,7 @@ private:
 
 	Ship ship{points, lines, heading};
 
-	PulsatingObject po{ points2, lines2, heading2 };
+	PulsatingObject* po = new PulsatingObject{ points2, lines2, heading2 };
 
 
 };
