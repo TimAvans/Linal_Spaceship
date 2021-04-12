@@ -1,6 +1,7 @@
 #include "../include/Bullet.hpp"
 
 void Bullet::CheckCollision() {
+
 	Vector3 max{ -INFINITY, -INFINITY, -INFINITY };
 	Vector3 min{ INFINITY, INFINITY, INFINITY };
 	

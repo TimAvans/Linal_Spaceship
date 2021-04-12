@@ -16,6 +16,14 @@ App::App()
 	window_.setView(view);
 
 	po->rotate_object({ 0.5, 0.5 ,0 });
+
+	drawables.push_back(ship);
+	drawables.push_back(*po);
+
+}
+
+bool shouldRemove(Bullet b) {
+	return b.shouldRemove;
 }
 
 void App::run() {
@@ -27,17 +35,20 @@ void App::run() {
 
  		for (size_t i = 0; i < objects.size(); ++i)
 		{
-			if (objects[i].shouldRemove) {
-				auto& del = objects[i];
-				objects.erase(objects.begin() + i);
-
-				delete& del;
+			if (objects[i]->shouldRemove) {
+				objects[i]->target = nullptr;
+				auto del = objects[i];
+				objects[i] = objects.back();
+				objects.pop_back();
+				delete del;
 			}
 		}
 
-		//if (po->shouldRemove) {
-		//	delete po;
-		//}
+		for (int i = 0; i < drawables.size(); i++) {
+			if (!drawables[i].shouldDraw) {
+				std::cout << "djkaljfkldasjfkldsajflkda";
+			}
+		}
 
 		//if (po) {
  		//	po->pulse();
@@ -90,29 +101,31 @@ void App::run() {
 					ship.move(false);
 				}								
 				if (event.key.code == sf::Keyboard::Space) {
- 					objects.push_back(ship.shoot_bullet(po));
+ 					objects.push_back(ship.shoot_bullet(*po));
 				}								
 			}
 		}
+
+		for (size_t i = 0; i < objects.size(); ++i)
+		{
+			objects[i]->move(true);
+			objects[i]->CheckCollision();
+		}
+
+		std::vector<DrawableObject> drawables2;
+
+		drawables2 = drawables;
+
+		for (size_t i = 0; i < objects.size(); ++i)
+		{
+			drawables2.push_back(*objects[i]);
+		}
+
 		window_.clear();
 
-		for (size_t i = 0; i < objects.size(); ++i)
-		{
-			objects[i].move(true);
-			objects[i].CheckCollision();
-		}
+		render.draw(drawables2, &window_);
 
-		std::vector<DrawableObject> drawables;
-		drawables.push_back(ship);
-		drawables.push_back(*po);
-		for (size_t i = 0; i < objects.size(); ++i)
-		{
-			drawables.push_back(objects[i]);
-		}
-
-		render.draw(drawables, &window_);
 		window_.display();
-
 	}
 }
 

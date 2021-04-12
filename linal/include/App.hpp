@@ -81,11 +81,12 @@ private:
 
 	Renderer render{};
 
-	std::vector<Bullet> objects;
+	std::vector<Bullet*> objects;
 
 	Ship ship{points, lines, heading};
 
 	PulsatingObject* po = new PulsatingObject{ points2, lines2, heading2 };
 
+	std::vector<DrawableObject> drawables;
 
 };
