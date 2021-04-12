@@ -17,7 +17,7 @@ public:
 	//	colliding_points.push_back(Vector4{ 15, 10, 13, 1 });
 	};
 
-	Bullet* shoot_bullet(PulsatingObject& po);
+	Bullet* shoot_bullet(PulsatingObject po);
 private:
 
 };

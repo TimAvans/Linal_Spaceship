@@ -987,7 +987,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Project"
+			"value" : "linal_spaceship"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",

@@ -15,10 +15,10 @@ App::App()
 	view.setSize(size.x, -size.y);
 	window_.setView(view);
 
-	po->rotate_object({ 0.5, 0.5 ,0 });
+	po.rotate_object({ 0.5, 0.5 ,0 });
 
 	drawables.push_back(ship);
-	drawables.push_back(*po);
+	drawables.push_back(po);
 
 }
 
@@ -33,6 +33,7 @@ void App::run() {
 
 		bool down = false;
 
+		//Delete kogel
  		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->shouldRemove) {
@@ -101,7 +102,7 @@ void App::run() {
 					ship.move(false);
 				}								
 				if (event.key.code == sf::Keyboard::Space) {
- 					objects.push_back(ship.shoot_bullet(*po));
+ 					objects.push_back(ship.shoot_bullet(po));
 				}								
 			}
 		}
