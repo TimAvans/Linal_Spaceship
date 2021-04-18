@@ -21,6 +21,7 @@ public:
 	std::vector<Vector4> colliding_points;
 
 	void rotate_object(Vector3 rotation_vector);
+	std::pair<Vector3, Vector3> getBoundingBox();
 	void move(bool isPosMovement) override;
 private:
 };

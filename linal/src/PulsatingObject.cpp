@@ -52,8 +52,7 @@ void PulsatingObject::pulse() {
 	//Move back
 	for (int i = 0; i < points.size(); ++i)
 	{
-		Matrix move_matrix = math_.translation_matrix(to_origin);
+		Matrix move_matrix = math_.translation_matrix(math_.multiply(to_origin, -1));
 		points[i] = Vector3{ math_.multiply(Vector4{points[i]}, move_matrix) };
 	}
-
 };
