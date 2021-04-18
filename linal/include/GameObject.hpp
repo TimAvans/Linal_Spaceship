@@ -13,7 +13,7 @@ public:
 
 	std::vector<Vector4> points;
 
-	virtual void move(bool isPosMovement);
+	virtual void move(bool isPosMovement) = 0;
 
 	bool shouldDraw = true;
 	bool shouldRemove = false;

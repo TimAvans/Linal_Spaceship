@@ -76,17 +76,14 @@ private:
 
 	Vector3 heading2{ 0, 0, 0 };
 
-
 	sf::RenderWindow window_;
 
 	Renderer render{};
 
 	std::vector<Bullet*> objects;
 
-	Ship ship{points, lines, heading};
+	Ship* ship;
+	PulsatingObject* po;
 
-	PulsatingObject po{ points2, lines2, heading2 };
-
-	std::vector<DrawableObject> drawables;
-
+	std::vector<DrawableObject*> drawables;
 };

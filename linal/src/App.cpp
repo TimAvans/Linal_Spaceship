@@ -15,11 +15,12 @@ App::App()
 	view.setSize(size.x, -size.y);
 	window_.setView(view);
 
-	po.rotate_object({ 0.5, 0.5 ,0 });
+	ship = new Ship( points, lines, heading );
+	po = new PulsatingObject( points2, lines2, heading2 );
 
 	drawables.push_back(ship);
 	drawables.push_back(po);
-
+	drawables.back()->rotate_object({ 0.5, 0.5 ,0 });
 }
 
 bool shouldRemove(Bullet b) {
@@ -27,6 +28,9 @@ bool shouldRemove(Bullet b) {
 }
 
 void App::run() {
+	sf::Clock deltaClock;
+	float dt;
+
 	while (window_.isOpen())
 	{
 		sf::Event event;
@@ -37,7 +41,7 @@ void App::run() {
  		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			if (objects[i]->shouldRemove) {
-				objects[i]->target = nullptr;
+				//objects[i]->target = nullptr;
 				auto del = objects[i];
 				objects[i] = objects.back();
 				objects.pop_back();
@@ -45,18 +49,16 @@ void App::run() {
 			}
 		}
 
-		for (int i = 0; i < drawables.size(); i++) {
-			if (!drawables[i].shouldDraw) {
-				std::cout << "djkaljfkldasjfkldsajflkda";
-			}
+
+		if (auto x = dynamic_cast<PulsatingObject*>(drawables.back())) {
+			x->pulse();
 		}
 
-		//if (po) {
- 		//	po->pulse();
-		//}
-		//else {
-		//	std::cout << "poepie";
-		//}
+		if (drawables.back()->shouldRemove) {
+			auto del = drawables.back();
+			drawables.pop_back();
+			delete del;
+		}
 
 		while (window_.pollEvent(event))
 		{
@@ -73,36 +75,36 @@ void App::run() {
 
 				if (event.key.code == sf::Keyboard::W)
 				{
-					ship.rotate_object({ -0.5, 0, 0 });
+					ship->rotate_object({ -0.5, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::S)
 				{
-					ship.rotate_object({ 0.5, 0, 0 });
+					ship->rotate_object({ 0.5, 0, 0 });
 				}
 				if (event.key.code == sf::Keyboard::A)
 				{
-					ship.rotate_object({ 0, -0.5, 0 });
+					ship->rotate_object({ 0, -0.5, 0 });
 				}
 				if (event.key.code == sf::Keyboard::D)
 				{
-					ship.rotate_object({ 0, 0.5, 0 });
+					ship->rotate_object({ 0, 0.5, 0 });
 				}
 				if (event.key.code == sf::Keyboard::Q)
 				{
-					ship.rotate_object({ 0, 0, -0.5 });
+					ship->rotate_object({ 0, 0, -0.1 });
 				}
 				if (event.key.code == sf::Keyboard::E)
 				{
-					ship.rotate_object({ 0, 0, 0.5 });
+					ship->rotate_object({ 0, 0, 0.25 });
 				}
 				if (event.key.code == sf::Keyboard::LShift) {
-					ship.move(true);
+					ship->move(true);
 				}
 				if (event.key.code == sf::Keyboard::LControl) {
-					ship.move(false);
+					ship->move(false);
 				}								
 				if (event.key.code == sf::Keyboard::Space) {
- 					objects.push_back(ship.shoot_bullet(po));
+ 					objects.push_back(ship->shoot_bullet());
 				}								
 			}
 		}
@@ -110,12 +112,18 @@ void App::run() {
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
 			objects[i]->move(true);
-			objects[i]->CheckCollision();
+			if (objects[i]->CheckCollision(*drawables.back())) {
+				drawables.back()->shouldRemove = true;
+			}
+			
 		}
 
 		std::vector<DrawableObject> drawables2;
 
-		drawables2 = drawables;
+		for (size_t i = 0; i < drawables.size(); ++i)
+		{
+			drawables2.push_back(*drawables[i]);
+		}
 
 		for (size_t i = 0; i < objects.size(); ++i)
 		{
@@ -127,6 +135,8 @@ void App::run() {
 		render.draw(drawables2, &window_);
 
 		window_.display();
+
+		//std::cout << dt << std::endl;
 	}
 }
 
